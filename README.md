@@ -5,6 +5,7 @@
 
 | Что | Ссылка |
 |---|---|
+| Исходный код сервиса GREEN_ (открыт) | https://github.com/Mojarung/LCT_2026 |
 | Демо модуля «Приоритет и бюджет» (прототип, условные данные) | https://retrobich921.github.io/green-ecopremia-2026/ |
 | Презентация проекта, PDF, 10 страниц | [presentation/GREEN_presentation.pdf](presentation/GREEN_presentation.pdf) |
 | Видео, 3 мин 14 с: работа сервиса (2 мин) и прототип модуля (1 мин) | https://retrobich921.github.io/green-ecopremia-2026/video/GREEN_video.mp4 |
@@ -111,4 +112,5 @@ presentation/       презентация заявки, PDF
 video/              видео: работа сервиса и прототип модуля
 ```
 
-Исходный код сервиса GREEN_ хранится в репозитории команды и доступен по запросу.
+Исходный код сервиса GREEN_ открыт: https://github.com/Mojarung/LCT_2026 — запуск `docker compose up --build -d`,
+веб-интерфейс на http://localhost:8000/, автотесты `uv run pytest` и `npm test`.
