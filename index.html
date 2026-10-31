@@ -296,7 +296,9 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
 }
 @media (max-width: 640px) {
   .bar-title { display: none; }
-  .badge-demo { font-size: 12px; padding: 4px 9px; }
+  .badge-demo { font-size: 11.5px; padding: 4px 9px; white-space: normal; line-height: 1.2; min-width: 0; }
+  .tag { white-space: normal; }
+  .bar .wrap { gap: 10px; }
   .real-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
@@ -318,7 +320,7 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
     <div class="mark">GREEN<span>_</span></div>
     <div class="bar-title">Приоритет территорий и бюджет озеленения</div>
     <div class="spacer"></div>
-    <div class="badge-demo" title="Показатели территорий, цены и меньшие варианты посадок условные. Реальные факты GREEN_ отмечены отдельно.">Демо: условные данные</div>
+    <div class="badge-demo" title="Цены, меньшие варианты посадок и обращения условные; факторы потребности — из открытых данных и прогонов GREEN_.">Демо: цены и варианты условные</div>
     <button class="icon-btn" id="themeBtn" type="button" aria-label="Сменить тему">Тема</button>
   </div>
 </header>
@@ -347,8 +349,8 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
   <section class="block" id="budget">
     <div class="sec-head">
       <h2>Бюджет программы</h2>
-      <span class="tag tag-proto">Прототип модуля · условные данные</span>
-      <p class="lede">Цены, площади участков и меньшие варианты посадок условные. Из каждой улицы берётся ровно один вариант, включая «без посадок»; набор подбирается точно, по максимуму суммы полезности U.</p>
+      <span class="tag tag-proto">Прототип модуля · условные цены и варианты</span>
+      <p class="lede">Цены, ширина участков и меньшие варианты посадок условные; потребность P — по открытым данным. Из каждой улицы берётся ровно один вариант, включая «без посадок»; набор подбирается точно, по максимуму суммы полезности U.</p>
     </div>
     <div class="budget surface">
       <div>
@@ -371,8 +373,9 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
   <section class="block" id="needs">
     <div class="sec-head">
       <h2>Карта потребности</h2>
-      <span class="tag tag-proto">Прототип модуля · условные данные</span>
-      <p class="lede">Схема, а не география: 20 участков пилота по убыванию P, полоса — вклады факторов. Процентиль считается среди этих 20 улиц: это не рейтинг всей Москвы и не превышение санитарных норм. Нажмите на улицу.</p>
+      <span class="tag tag-real">Открытые данные: OSM, GHS-POP, Landsat · прогон GREEN_</span>
+      <span class="tag tag-proto">PM2.5: нет данных</span>
+      <p class="lede">Схема, а не география: 20 участков пилота по убыванию P. Буфер — 300 м вокруг оси улицы целиком по OSM; граница работ пилота короче, поэтому это окрестность улицы, а не участок. Для PM2.5 открытого сопоставимого источника нет, поэтому по умолчанию профиль basic: G, E, V по 1/3 (H считается и показан справочно). Процентиль — среди этих 20 улиц, это не рейтинг всей Москвы. Нажмите на улицу.</p>
     </div>
     <div class="need">
       <div>
@@ -386,8 +389,8 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
   <section class="block" id="weights">
     <div class="sec-head">
       <h2>Веса, профиль и устойчивость рейтинга</h2>
-      <span class="tag tag-proto">Прототип модуля · условные данные</span>
-      <p class="lede">Равные веса по 20% — проектная гипотеза, не норматив; перед применением их согласуют специалисты. Профиль basic (G, E, V по 1/3) включается, когда H или A известны не для всех участков. Нижний вес полезности: при 1,0 приоритет не влияет на отбор.</p>
+      <span class="tag tag-proto">Веса — проектная гипотеза</span>
+      <p class="lede">Профиль basic (G, E, V по 1/3) выбран по умолчанию: PM2.5 неизвестен для всех улиц. В полном профиле A отсутствует, P становится диапазоном и по спецификации не участвует в автоматическом распределении бюджета. Равные веса по 20% — гипотеза, не норматив. Нижний вес полезности: при 1,0 приоритет не влияет на отбор.</p>
     </div>
     <div class="weights">
       <div class="surface">
@@ -422,7 +425,7 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
   <section class="block" id="residents">
     <div class="sec-head">
       <h2>Обращения жителей</h2>
-      <span class="tag tag-proto">Прототип модуля · условные данные</span>
+      <span class="tag tag-proto">Прототип модуля · условные обращения</span>
       <p class="lede">Обращение создаёт кандидата на обследование. Число голосов не повышает P и не включает участок в программу автоматически.</p>
     </div>
     <div class="reqs" id="reqs"></div>
@@ -454,7 +457,7 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
         <span class="tag tag-plain">План развития</span>
         <h3>Данные и мониторинг</h3>
         <ul>
-          <li>Сопоставимые источники H, A, E, V вместо условных значений</li>
+          <li>Сопоставимый открытый источник PM2.5 (A); H по нескольким летним сценам; граница работ вместо оси OSM</li>
           <li>Бюджетные варианты, сгенерированные и проверенные GREEN_, а не доли полного плана</li>
           <li>Реальный справочник цен, уход и замена растений</li>
           <li>Прогноз воздуха и мониторинг приживаемости посадок</li>
@@ -462,7 +465,7 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
       </div>
     </div>
     <div class="selftest" id="selftest">Самопроверка оптимизатора выполняется…</div>
-    <p class="fineprint">Источники реальных фактов: README и приложение B документации GREEN_ (пакет прогонов 20.10.2026). Условные: температура поверхности H, PM2.5 A, плотность жителей E, социальные объекты V, ширина участков и длина бортов, распределение кустов по улицам, цены, состав меньших вариантов. Доля существующих крон для G взята из прогона GREEN_; кроны существующих деревьев там приняты кругами 8,5 м, поэтому G помечен как оценка.</p>
+    <p class="fineprint">Источники: README и приложение B документации GREEN_ (пакет прогонов 20.10.2026) — факты и G; OpenStreetMap (© участники OpenStreetMap, ODbL, выгрузка 31.10.2026) — оси улиц и V; GHS-POP R2023A (JRC, Copernicus) — E; Landsat 8/9 Collection 2 Level-2 (USGS, через Microsoft Planetary Computer) — H. Ось «Олимпийской деревни» (район, а не улица) и «Наташинского проезда» в OSM не найдена: у них H, E, V — нет данных. PM2.5 (A) — нет открытых сопоставимых данных. Условные: ширина участков и длина бортов, распределение кустов по улицам, цены, состав меньших вариантов, обращения жителей.</p>
   </footer>
 </main>
 
@@ -470,7 +473,7 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
 "use strict";
 // ---------- Данные ----------
 // Реальные значения из приложения B: деревьев (strict), деревьев на 1 км, кроны % было→стало, борта под зеленью % было→стало.
-// Условные: H (°C поверхности), A (PM2.5, мкг/м³), E (чел/га), V (объектов на км), ширина участка, м.
+// H, E, V ниже — заглушки, их заменяют открытые данные OPEN; A — нет данных. Ширина участка, м — условно.
 const RAW = [
   ["S01","Олимпийская деревня",735,354,16.3,18.7,20.6,38.4, 41.2,10.8,182,2.4,46],
   ["S02","Песчаный переулок",111,89,34.2,36,35.6,40.7, 38.5,11.9,145,3.1,30],
@@ -493,14 +496,24 @@ const RAW = [
   ["S19","2-я Прядильная ул.",77,51,29.8,30.4,38.1,43.6, 41.1,11.7,176,2.1,32],
   ["S20","Улица Сергея Макеева",90,34,19.8,20.2,32.1,37.5, 42.4,13.3,139,1.8,34],
 ];
+const OPEN = {"meta": {"osmDate": "2026-10-31", "ghsl": "GHS_POP_E2025_GLOBE_R2023A_54009_100_V1_0_R3_C21", "scene": "LC08_L2SP_178021_20240831_02_T1", "sceneDate": "2024-08-31", "cloud": 0.04}, "streets": {"S01": {"axisKm": null, "social": null, "socialByType": null, "V": null, "pop": null, "E": null, "H": null, "Hpx": null}, "S02": {"axisKm": 0.59, "social": 10, "socialByType": {"school": 1, "kindergarten": 5, "clinic": 2, "hospital": 0, "doctors": 2}, "V": 16.95, "pop": 8307, "E": 130.7, "H": null, "Hpx": 13}, "S03": {"axisKm": 2.311, "social": 39, "socialByType": {"school": 8, "kindergarten": 20, "clinic": 8, "hospital": 1, "doctors": 2}, "V": 16.87, "pop": 20861, "E": 121.5, "H": 28.48, "Hpx": 1908}, "S04": {"axisKm": 1.109, "social": 7, "socialByType": {"school": 0, "kindergarten": 6, "clinic": 1, "hospital": 0, "doctors": 0}, "V": 6.31, "pop": 13951, "E": 147.2, "H": 29.34, "Hpx": 1049}, "S05": {"axisKm": 1.57, "social": 11, "socialByType": {"school": 3, "kindergarten": 4, "clinic": 1, "hospital": 1, "doctors": 2}, "V": 7.01, "pop": 16818, "E": 135.0, "H": null, "Hpx": 45}, "S06": {"axisKm": 1.486, "social": 10, "socialByType": {"school": 3, "kindergarten": 7, "clinic": 0, "hospital": 0, "doctors": 0}, "V": 6.73, "pop": 35734, "E": 304.7, "H": 29.42, "Hpx": 1301}, "S07": {"axisKm": 1.633, "social": 1, "socialByType": {"school": 0, "kindergarten": 1, "clinic": 0, "hospital": 0, "doctors": 0}, "V": 0.61, "pop": 22302, "E": 176.7, "H": 32.73, "Hpx": 1052}, "S08": {"axisKm": 2.878, "social": 9, "socialByType": {"school": 2, "kindergarten": 3, "clinic": 2, "hospital": 0, "doctors": 2}, "V": 3.13, "pop": 25534, "E": 127.2, "H": 30.24, "Hpx": 1349}, "S09": {"axisKm": 0.784, "social": 10, "socialByType": {"school": 1, "kindergarten": 3, "clinic": 2, "hospital": 0, "doctors": 4}, "V": 12.75, "pop": 6877, "E": 121.7, "H": 28.5, "Hpx": 622}, "S10": {"axisKm": 1.299, "social": 8, "socialByType": {"school": 2, "kindergarten": 3, "clinic": 3, "hospital": 0, "doctors": 0}, "V": 6.16, "pop": 24661, "E": 273.7, "H": 29.93, "Hpx": 997}, "S11": {"axisKm": 4.897, "social": 21, "socialByType": {"school": 5, "kindergarten": 8, "clinic": 6, "hospital": 1, "doctors": 1}, "V": 4.29, "pop": 11178, "E": 62.5, "H": 28.8, "Hpx": 1983}, "S12": {"axisKm": null, "social": null, "socialByType": null, "V": null, "pop": null, "E": null, "H": null, "Hpx": null}, "S13": {"axisKm": 1.499, "social": 4, "socialByType": {"school": 1, "kindergarten": 3, "clinic": 0, "hospital": 0, "doctors": 0}, "V": 2.67, "pop": 12933, "E": 108.7, "H": 30.63, "Hpx": 1320}, "S14": {"axisKm": 1.787, "social": 9, "socialByType": {"school": 1, "kindergarten": 5, "clinic": 1, "hospital": 1, "doctors": 1}, "V": 5.04, "pop": 17112, "E": 126.4, "H": 30.66, "Hpx": 1263}, "S15": {"axisKm": 1.074, "social": 6, "socialByType": {"school": 2, "kindergarten": 4, "clinic": 0, "hospital": 0, "doctors": 0}, "V": 5.59, "pop": 3090, "E": 33.3, "H": 31.2, "Hpx": 945}, "S16": {"axisKm": 2.881, "social": 19, "socialByType": {"school": 4, "kindergarten": 10, "clinic": 3, "hospital": 1, "doctors": 1}, "V": 6.59, "pop": 37536, "E": 186.6, "H": null, "Hpx": 70}, "S17": {"axisKm": 1.222, "social": 18, "socialByType": {"school": 2, "kindergarten": 3, "clinic": 13, "hospital": 0, "doctors": 0}, "V": 14.73, "pop": 16369, "E": 161.3, "H": 31.14, "Hpx": 1128}, "S18": {"axisKm": 0.97, "social": 13, "socialByType": {"school": 6, "kindergarten": 6, "clinic": 0, "hospital": 0, "doctors": 1}, "V": 13.4, "pop": 39574, "E": 458.3, "H": 29.22, "Hpx": 852}, "S19": {"axisKm": 0.879, "social": 10, "socialByType": {"school": 4, "kindergarten": 3, "clinic": 1, "hospital": 0, "doctors": 2}, "V": 11.37, "pop": 8734, "E": 108.2, "H": 28.12, "Hpx": 893}, "S20": {"axisKm": 1.568, "social": 24, "socialByType": {"school": 1, "kindergarten": 6, "clinic": 6, "hospital": 0, "doctors": 11}, "V": 15.31, "pop": 14360, "E": 117.5, "H": 30.41, "Hpx": 1360}}};
 const TOTAL_SHRUBS = 36305;
+const OM = OPEN.meta;
+const ruDate = d => d ? d.split("-").reverse().join(".") : "—";
 const FACTORS = [
-  {k:"G", name:"Дефицит зелени", unit:"", desc:"1 − доля крон в границе", src:"из прогона GREEN_", status:"оценка: кроны кругами 8,5 м"},
-  {k:"H", name:"Перегрев поверхности", unit:"°C", desc:"медиана дневной температуры поверхности", src:"условно", status:"условное значение"},
-  {k:"A", name:"PM2.5", unit:"мкг/м³", desc:"среднегодовая концентрация", src:"условно", status:"условное значение"},
-  {k:"E", name:"Жители в буфере", unit:"чел/га", desc:"плотность жителей в буфере", src:"условно", status:"условное значение"},
-  {k:"V", name:"Школы, детсады, медучреждения", unit:"на км", desc:"уникальных объектов на км участка", src:"условно", status:"условное значение"},
+  {k:"G", name:"Дефицит зелени", unit:"", short:"прогон GREEN_",
+   src:"прогон GREEN_ 20.10.2026, профиль strict", method:"1 − доля объединения существующих крон в границе работ", quality:"estimated", qnote:"кроны существующих деревьев приняты кругами 8,5 м"},
+  {k:"H", name:"Перегрев поверхности", unit:"°C", short:"Landsat",
+   src: OM.scene ? `Landsat 8/9 C2 L2, ST_B10, сцена ${OM.scene}, ${ruDate(OM.sceneDate)}, облачность ${OM.cloud}%` : "Landsat 8/9 C2 L2 — не загружено",
+   method:"медиана температуры поверхности в буфере 300 м, облака и тени сняты по QA_PIXEL; одна сцена на все улицы", quality: OM.scene ? "accepted" : "missing", qnote:"температура поверхности, не воздуха; один снимок, не сезонная медиана"},
+  {k:"A", name:"PM2.5", unit:"мкг/м³", short:"нет данных",
+   src:"нет открытых сопоставимых данных", method:"среднегодовая концентрация с известным покрытием — источник не найден", quality:"missing", qnote:"данные ближайшей станции не подставляются"},
+  {k:"E", name:"Жители в буфере", unit:"чел/га", short:"GHS-POP",
+   src:"GHS-POP R2023A, эпоха 2025, сетка 100 м (JRC, Copernicus)", method:"сумма жителей в буфере 300 м / площадь буфера", quality:"estimated", qnote:"модельная сетка населения, не перепись"},
+  {k:"V", name:"Школы, детсады, медучреждения", unit:"на км", short:"OpenStreetMap",
+   src:`OpenStreetMap, выгрузка ${ruDate(OM.osmDate)}`, method:"уникальные объекты amenity=school, kindergarten, clinic, hospital, doctors в буфере 300 м на км оси", quality:"accepted", qnote:"полнота OSM не проверялась"},
 ];
+const QLBL = {accepted: "принято", estimated: "оценка", missing: "нет данных"};
 const PRICE_DATE = "01.10.2026";
 const PRICES = [
   {code:"tilia_cordata", name:"Липа мелколистная", kind:"tree", size:"ствол 8–10 см, ком", plant:16200, planting:6800},
@@ -561,6 +574,12 @@ const STREETS = RAW.map(r => {
   const shrubs = apportion(TOTAL_SHRUBS, STREETS.map(s => s.dL + 0.15 * s.trees + 20));
   STREETS.forEach((s, i) => { s.shrubs = shrubs[i]; });
 }
+// Открытые данные вместо условных значений: H, E, V; A — нет сопоставимого источника.
+STREETS.forEach(s => {
+  const o = OPEN.streets[s.id];
+  s.open = o;
+  s.raw.H = o.H; s.raw.E = o.E; s.raw.V = o.V; s.raw.A = null;
+});
 STREETS.forEach(s => {
   const rnd = rngFrom(hash(s.id));
   s.treeMix = TREE_SP.map(() => 0.2 + rnd());
@@ -586,7 +605,7 @@ const FULL_COST = STREETS.reduce((a, s) => a + s.variants[s.variants.length - 1]
 // ---------- Состояние ----------
 const state = {
   weights: {G:20, H:20, A:20, E:20, V:20},
-  profile: "full",
+  profile: "basic",
   floor: 0.25,
   budget: Math.round(FULL_COST * 0.35 / 1e8) * 1e8, // копейки, кратно 1 млн ₽
   open: "S14",
@@ -823,17 +842,19 @@ function renderDetail() {
   const B = state.budget;
   const rank = M.rank.r[s.id];
   const pTxt = p.complete ? nf0.format(p.lo) : `${nf0.format(p.lo)}–${nf0.format(p.hi)}`;
-  const fs = activeFactors();
+  const fs = FACTORS.map(f => f.k);
   const contrib = fs.map(k => {
     const f = FACTORS.find(x => x.k === k), q = Q[s.id][k], w = M.w[k];
     const v = s.raw[k];
-    const val = q === null ? "—" : nf1.format(100 * w * q);
+    const inP = w !== undefined;
+    const val = q === null || !inP ? "—" : nf1.format(100 * w * q);
     const bar = q === null ? `<div class="bar-bg"><i style="width:100%;background:repeating-linear-gradient(135deg,var(--hair-2) 0 3px,transparent 3px 6px)"></i></div>`
       : `<div class="bar-bg"><i style="width:${q * 100}%;background:var(--f${k})"></i></div>`;
     const qs = q === null ? `<span class="muted">q —</span>` : `<span class="muted num">q ${nf2.format(q)}</span>`;
-    const statusTxt = v === null ? `<b style="color:var(--warn)">нет данных: требуется источник</b>` : `${f.src}, ${f.status}`;
-    return `<span class="code" style="color:var(--f${k})">${k}</span>${bar}${qs}<b class="num" style="text-align:right">${val}</b>
-      <div class="lbl">${f.name}: <span class="num">${fmtRaw(k, v)}${v !== null && f.unit ? " " + f.unit : ""}</span> · ${statusTxt} · n = ${f.n}</div>`;
+    const qual = v === null ? (f.quality === "missing" ? "нет данных" : (!s.open.axisKm ? "нет данных по улице: ось не найдена в OSM" : "нет данных: в продукте ST нет значений на большей части буфера")) : QLBL[f.quality];
+    const statusTxt = `<span style="color:${v === null ? "var(--warn)" : f.quality === "accepted" ? "var(--ok)" : "var(--bone-2)"}">${qual}</span>`;
+    return `<span class="code" style="color:var(--f${k});opacity:${inP ? 1 : .5}">${k}</span>${bar}${qs}<b class="num" style="text-align:right">${val}</b>
+      <div class="lbl">${f.name}: <b class="num">${fmtRaw(k, v)}${v !== null && f.unit ? " " + f.unit : ""}</b> · ${statusTxt}${inP ? "" : " · не входит в профиль basic"}<br>${esc(f.src)}; ${esc(f.method)}; n = ${f.n}. ${esc(f.qnote)}.</div>`;
   }).join("");
 
   // варианты
@@ -890,10 +911,10 @@ function renderDetail() {
     }
   }
 
-  el.innerHTML = `<div class="d-head"><div><span class="tag tag-proto" style="margin-bottom:8px">условные данные</span><h3 style="margin-top:8px">${esc(s.name)}</h3>
-      <div class="d-sub">${s.lenCond ? "длина ≈ 1,6 км (условно)" : `длина ≈ ${nf2.format(s.lengthKm)} км по прогону`} · ширина участка ${s.width} м (условно) · ${s.id}</div></div>
+  el.innerHTML = `<div class="d-head"><div><span class="tag tag-real" style="margin-bottom:8px">факторы: открытые данные</span> <span class="tag tag-proto">цены и варианты условные</span><h3 style="margin-top:8px">${esc(s.name)}</h3>
+      <div class="d-sub">${s.lenCond ? "длина ≈ 1,6 км (условно)" : `длина ≈ ${nf2.format(s.lengthKm)} км по прогону`} · ширина участка ${s.width} м (условно) · ${s.open.axisKm ? `ось улицы целиком по OSM ${nf2.format(s.open.axisKm)} км, буфер 300 м` : "ось в OSM не найдена"}${s.open.social !== null ? ` · объектов в буфере ${s.open.social}` : ""}${s.open.pop !== null ? ` · жителей ≈ ${nf0.format(s.open.pop)}` : ""} · ${s.id}</div></div>
       <div class="d-p"><b class="num">${pTxt}</b><span>${p.complete ? `P, ${rank}-е место` : "P, диапазон"}</span></div></div>
-    <div class="d-sec"><h4>Вклады в P</h4><div class="contrib">${contrib}</div></div>
+    <div class="d-sec"><h4>Вклады в P · ${state.profile === "basic" ? "профиль basic: G, E, V по 1/3" : "полный профиль"}</h4><div class="contrib">${contrib}</div></div>
     <div class="d-sec"><h4>Прогон GREEN_, было → стало</h4>
       <div class="callout"><span class="tag tag-real" style="font-size:10.5px">реальные данные</span>&nbsp; кроны ${nf1.format(s.crown[0])} → ${nf1.format(s.crown[1])}% участка · борта под зеленью ${nf1.format(s.kerbPct[0])} → ${nf1.format(s.kerbPct[1])}% · деревьев ${nf0.format(s.trees)} · нарушений 0. Кустов ${nf0.format(s.shrubs)} — условное распределение итога 36 305.</div></div>
     <div class="d-sec"><h4>Варианты посадок</h4><div class="tbl-wrap"><table>
@@ -903,14 +924,14 @@ function renderDetail() {
 }
 
 function renderWeights() {
-  $("profileSeg").innerHTML = [["full","Полный, 5 факторов"],["basic","basic: G, E, V"]].map(([v, t]) => `<button type="button" data-profile="${v}" aria-pressed="${state.profile === v}">${t}</button>`).join("");
+  $("profileSeg").innerHTML = [["basic","basic: G, E, V"],["full","Полный, 5 факторов"]].map(([v, t]) => `<button type="button" data-profile="${v}" aria-pressed="${state.profile === v}">${t}</button>`).join("");
   $("floorSeg").innerHTML = [0.25, 0.5, 1].map(v => `<button type="button" data-floor="${v}" aria-pressed="${state.floor === v}">${nf2.format(v)}</button>`).join("");
   const w = M.w;
   $("wSliders").innerHTML = FACTORS.map(f => {
     const on = f.k in w;
     return `<div class="w-row${on ? "" : " dis"}"><span class="mono" style="color:var(--f${f.k})">${f.k}</span>
       <input type="range" min="0" max="60" step="1" value="${state.weights[f.k]}" data-w="${f.k}" ${on && state.profile === "full" ? "" : "disabled"} aria-label="Вес ${f.name}">
-      <b class="num" style="text-align:right">${on ? nf1.format(w[f.k] * 100) + "%" : "—"}</b><div class="lbl">${f.name}${f.k === "G" ? " · из прогона GREEN_" : " · условно"}</div></div>`;
+      <b class="num" style="text-align:right">${on ? nf1.format(w[f.k] * 100) + "%" : "—"}</b><div class="lbl">${f.name} · ${f.short}</div></div>`;
   }).join("");
 }
 
