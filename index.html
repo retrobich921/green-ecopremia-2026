@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GREEN_ бюджет озеленения</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --ground: #f1ede5;
+  --panel: #fbfaf7;
+  --panel-2: #f2eee6;
+  --panel-3: #e7e1d5;
+  --hair: #e4ded2;
+  --hair-2: #c8bfad;
+  --bone: #1c1a16;
+  --bone-2: #4d473d;
+  --bone-3: #696255;
+  --inverse: #fbfaf7;
+  --brand: #1f5136;
+  --brand-soft: #dfe9dc;
+  --ok: #3d7a4e;
+  --warn: #946214;
+  --warn-soft: #f4e7cc;
+  --bad: #a8402f;
+  --p0: #eceee0; --p0-ink: #1c1a16;
+  --p1: #d0e0bd; --p1-ink: #1c1a16;
+  --p2: #9cc49a; --p2-ink: #1c1a16;
+  --p3: #4f8f63; --p3-ink: #fbfaf7;
+  --p4: #1f5136; --p4-ink: #fbfaf7;
+  --fG: #3d7a4e;
+  --fH: #c0782a;
+  --fA: #557392;
+  --fE: #8a668c;
+  --fV: #a89242;
+  --sel: #1f5136;
+  --lift: 0 1px 2px rgba(40,32,20,.06), 0 14px 36px -16px rgba(40,32,20,.24);
+  --sans: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --r: 12px;
+  --r-s: 8px;
+  --gutter: clamp(16px, 3.2vw, 40px);
+  --ease: cubic-bezier(.22,1,.36,1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #0f1113; --panel: #16191c; --panel-2: #1d2124; --panel-3: #262a2e;
+    --hair: #272b30; --hair-2: #3b4148;
+    --bone: #ecebe6; --bone-2: #b1afa8; --bone-3: #908d86; --inverse: #0f1113;
+    --brand: #7fc29a; --brand-soft: #1d2f25;
+    --ok: #6fae86; --warn: #cfa14a; --warn-soft: #2e2617; --bad: #d97b6c;
+    --p0: #1f2522; --p0-ink: #ecebe6;
+    --p1: #243a2d; --p1-ink: #ecebe6;
+    --p2: #2f5b40; --p2-ink: #ecebe6;
+    --p3: #4f9168; --p3-ink: #0f1113;
+    --p4: #8fd0a6; --p4-ink: #0f1113;
+    --fG: #6fae86; --fH: #d99a52; --fA: #84a2c2; --fE: #b592b8; --fV: #cbb66a;
+    --sel: #8fd0a6;
+    --lift: 0 1px 2px rgba(0,0,0,.4), 0 16px 40px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #0f1113; --panel: #16191c; --panel-2: #1d2124; --panel-3: #262a2e;
+  --hair: #272b30; --hair-2: #3b4148;
+  --bone: #ecebe6; --bone-2: #b1afa8; --bone-3: #908d86; --inverse: #0f1113;
+  --brand: #7fc29a; --brand-soft: #1d2f25;
+  --ok: #6fae86; --warn: #cfa14a; --warn-soft: #2e2617; --bad: #d97b6c;
+  --p0: #1f2522; --p0-ink: #ecebe6;
+  --p1: #243a2d; --p1-ink: #ecebe6;
+  --p2: #2f5b40; --p2-ink: #ecebe6;
+  --p3: #4f9168; --p3-ink: #0f1113;
+  --p4: #8fd0a6; --p4-ink: #0f1113;
+  --fG: #6fae86; --fH: #d99a52; --fA: #84a2c2; --fE: #b592b8; --fV: #cbb66a;
+  --sel: #8fd0a6;
+  --lift: 0 1px 2px rgba(0,0,0,.4), 0 16px 40px -14px rgba(0,0,0,.7);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--bone);
+  font: 400 15px/1.5 var(--sans);
+  font-variant-numeric: tabular-nums;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mono { font-family: var(--mono); font-size: 13px; }
+.muted { color: var(--bone-3); }
+.wrap { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Шапка */
+.bar {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in oklab, var(--ground) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--hair);
+}
+.bar .wrap { display: flex; align-items: center; gap: 16px; height: 56px; }
+.mark { font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: var(--brand); }
+.mark span { color: var(--bone); }
+.bar-title { font-weight: 500; color: var(--bone-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.bar .spacer { flex: 1; }
+.badge-demo {
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+  padding: 5px 11px; border-radius: 999px;
+  background: var(--warn-soft); color: var(--warn);
+  font-size: 13px; font-weight: 600;
+}
+.badge-demo::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
+.icon-btn {
+  border: 1px solid var(--hair-2); background: var(--panel); border-radius: var(--r-s);
+  height: 34px; padding: 0 12px; cursor: pointer; font-size: 13px; white-space: nowrap;
+}
+.icon-btn:hover { background: var(--panel-2); }
+
+/* Вступление */
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 32px; padding: 22px 0 6px; align-items: center; }
+.intro h1 { font-size: clamp(26px, 2.5vw, 34px); line-height: 1.1; letter-spacing: -0.025em; }
+.intro p { margin-top: 10px; color: var(--bone-2); max-width: 56ch; }
+.real {
+  background: var(--panel); border-radius: var(--r); padding: 12px 18px 14px;
+}
+.real-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.real-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 18px; }
+.real-grid div b { display: block; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+.real-grid div span { font-size: 12.5px; color: var(--bone-3); line-height: 1.3; display: block; }
+
+.tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
+.tag-real { background: var(--brand-soft); color: var(--brand); }
+.tag-proto { background: var(--warn-soft); color: var(--warn); }
+.tag-plain { background: var(--panel-3); color: var(--bone-2); }
+
+/* Секции */
+section.block { padding: 22px 0 4px; }
+.sec-head { display: flex; align-items: baseline; gap: 6px 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.sec-head h2 { font-size: 22px; }
+.sec-head .lede { color: var(--bone-3); font-size: 14px; flex-basis: 100%; max-width: 90ch; }
+.surface { background: var(--panel); border-radius: var(--r); padding: 20px; }
+
+/* Бюджет */
+.budget { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.9fr); gap: 28px; align-items: start; }
+.b-value { font-size: clamp(32px, 3.4vw, 46px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+.b-sub { color: var(--bone-3); font-size: 13px; margin-top: 6px; }
+input[type=range] { width: 100%; accent-color: var(--brand); height: 28px; margin: 14px 0 6px; cursor: pointer; }
+.quick { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip-btn {
+  border: 1px solid var(--hair-2); background: transparent; border-radius: 999px;
+  padding: 6px 13px; font-size: 13px; cursor: pointer; transition: background .15s var(--ease);
+}
+.chip-btn:hover { background: var(--panel-2); }
+.chip-btn[aria-pressed="true"] { background: var(--bone); color: var(--inverse); border-color: var(--bone); }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--hair); border-radius: var(--r-s); overflow: hidden; }
+.kpi { background: var(--panel); padding: 12px 14px; min-width: 0; }
+.kpi span { display: block; font-size: 12.5px; color: var(--bone-3); }
+.kpi b { display: block; font-size: 21px; font-weight: 600; letter-spacing: -0.02em; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kpi small { font-size: 12px; color: var(--bone-3); }
+.greedy { margin-top: 12px; font-size: 13.5px; color: var(--bone-2); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.greedy b { font-weight: 600; }
+.delta-bad { color: var(--bad); font-weight: 600; }
+.delta-ok { color: var(--ok); font-weight: 600; }
+
+/* Таблицы */
+.tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th { text-align: left; font-weight: 500; color: var(--bone-3); font-size: 12.5px; padding: 7px 10px; border-bottom: 1px solid var(--hair-2); white-space: nowrap; }
+td { padding: 8px 10px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+td.r, th.r { text-align: right; }
+tr:last-child td { border-bottom: 0; }
+tfoot td { font-weight: 600; border-top: 1px solid var(--hair-2); border-bottom: 0; }
+tbody tr.is-sel td { background: var(--brand-soft); }
+.detail table td:first-child { min-width: 120px; }
+.cmp td:first-child { color: var(--bone-2); white-space: nowrap; }
+.cmp td, .cmp th { padding: 6px 10px; }
+.cmp tr.main td { background: var(--brand-soft); font-weight: 600; color: var(--bone); }
+
+/* Карта потребности */
+.need { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.legend { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; font-size: 13px; color: var(--bone-2); margin-bottom: 12px; }
+.legend .sw { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.scale { display: inline-flex; border-radius: 4px; overflow: hidden; margin: 0 6px; vertical-align: -2px; }
+.scale i { width: 18px; height: 11px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(178px, 1fr)); gap: 10px; }
+.tile {
+  text-align: left; border: 0; cursor: pointer; background: var(--panel);
+  border-radius: var(--r-s); padding: 0; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: inset 0 0 0 1px var(--hair);
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+  min-width: 0;
+}
+.tile:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px var(--hair-2), var(--lift); }
+.tile:focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; }
+.tile.is-open { box-shadow: inset 0 0 0 2px var(--sel), var(--lift); }
+.tile-top { display: flex; align-items: stretch; }
+.tile-p { width: 62px; flex: none; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10px 4px; }
+.tile-p b { font-size: 22px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; }
+.tile-p b.range { font-size: 14px; }
+.tile-p span { font-size: 11px; opacity: .8; margin-top: 3px; }
+.tile-name { padding: 9px 10px 6px; min-width: 0; flex: 1; }
+.tile-name .rk { font-size: 12px; color: var(--bone-3); }
+.tile-name h4 { font-size: 14px; font-weight: 600; line-height: 1.25; margin-top: 1px; overflow-wrap: anywhere; }
+.stack { display: flex; height: 6px; background: var(--panel-3); }
+.stack i { display: block; height: 100%; }
+.stack i.miss { background: repeating-linear-gradient(135deg, var(--hair-2) 0 3px, transparent 3px 6px); }
+.tile-foot { padding: 7px 10px 9px; font-size: 12.5px; color: var(--bone-2); display: flex; justify-content: space-between; gap: 2px 6px; flex-wrap: wrap; }
+.st { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.st::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--hair-2); }
+.st.on::before { background: var(--brand); }
+.st.part::before { background: var(--p2); box-shadow: 0 0 0 1px var(--p3); }
+.st.need-data { color: var(--warn); }
+.st.need-data::before { background: var(--warn); border-radius: 2px; }
+.pb0 { background: var(--p0); color: var(--p0-ink); }
+.pb1 { background: var(--p1); color: var(--p1-ink); }
+.pb2 { background: var(--p2); color: var(--p2-ink); }
+.pb3 { background: var(--p3); color: var(--p3-ink); }
+.pb4 { background: var(--p4); color: var(--p4-ink); }
+.pbx { background: var(--panel-3); color: var(--bone-2); }
+
+/* Панель улицы */
+.detail { position: sticky; top: 72px; background: var(--panel); border-radius: var(--r); padding: 20px; box-shadow: var(--lift); max-height: calc(100vh - 88px); overflow: auto; }
+.detail h3 { font-size: 21px; line-height: 1.2; }
+.d-head { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; }
+.d-p { text-align: right; flex: none; }
+.d-p b { font-size: 38px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+.d-p span { display: block; font-size: 12.5px; color: var(--bone-3); }
+.d-sub { color: var(--bone-3); font-size: 13px; margin-top: 4px; }
+.d-sec { margin-top: 18px; }
+.d-sec h4 { font-size: 13px; font-weight: 600; color: var(--bone-2); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 8px; }
+.contrib { display: grid; grid-template-columns: 22px minmax(0, 1fr) 70px 46px; gap: 4px 10px; align-items: center; font-size: 13.5px; }
+.contrib .code { font-family: var(--mono); font-weight: 500; }
+.contrib .bar-bg { height: 8px; background: var(--panel-3); border-radius: 4px; overflow: hidden; }
+.contrib .bar-bg i { display: block; height: 100%; border-radius: 4px; }
+.contrib .lbl { grid-column: 2 / 5; font-size: 12.5px; color: var(--bone-3); margin: -2px 0 6px; }
+.why { display: grid; gap: 8px; font-size: 14px; }
+.why div { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 10px; }
+.why dt, .why .k { color: var(--bone-3); font-size: 13px; }
+.force-btn { border: 1px solid var(--hair-2); background: transparent; border-radius: 6px; padding: 2px 8px; font-size: 12px; cursor: pointer; white-space: nowrap; }
+.force-btn:hover { background: var(--panel-2); }
+.force-btn[aria-pressed="true"] { background: var(--bone); color: var(--inverse); }
+.callout { background: var(--panel-2); border-radius: var(--r-s); padding: 12px 14px; font-size: 13.5px; color: var(--bone-2); }
+.callout b { color: var(--bone); }
+.empty { color: var(--bone-3); font-size: 14px; padding: 30px 0; text-align: center; }
+
+/* Веса */
+.weights { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 24px; align-items: start; }
+.w-row { display: grid; grid-template-columns: 26px minmax(0, 1fr) 54px; gap: 4px 12px; align-items: center; }
+.w-row + .w-row { margin-top: 4px; }
+.w-row input { margin: 4px 0; }
+.w-row .lbl { grid-column: 2 / 4; font-size: 12.5px; color: var(--bone-3); margin-top: -8px; }
+.w-row.dis { opacity: .45; }
+.seg { display: inline-flex; background: var(--panel-2); border-radius: var(--r-s); padding: 3px; gap: 2px; flex-wrap: wrap; }
+.seg button { border: 0; background: transparent; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.seg button[aria-pressed="true"] { background: var(--panel); box-shadow: 0 1px 2px rgba(0,0,0,.12); font-weight: 600; }
+.ctl-row { display: flex; gap: 10px 18px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.ctl-row .k { font-size: 13px; color: var(--bone-3); }
+.rng { position: relative; height: 14px; min-width: 120px; }
+.rng .ax { position: absolute; left: 0; right: 0; top: 6px; height: 2px; background: var(--hair); }
+.rng .span { position: absolute; top: 3px; height: 8px; border-radius: 4px; background: var(--p2); }
+.rng .dot { position: absolute; top: 1px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 2px var(--panel); }
+
+/* Ведомость */
+caption { caption-side: top; text-align: left; font-size: 13px; color: var(--bone-3); padding: 0 0 10px; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 24px; align-items: start; }
+
+/* Обращения */
+.reqs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.req { background: var(--panel); border-radius: var(--r-s); padding: 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.req q { font-size: 14.5px; quotes: "«" "»"; }
+.req .meta { font-size: 12.5px; color: var(--bone-3); }
+.req .stat { margin-top: auto; font-size: 13px; padding-top: 8px; border-top: 1px solid var(--hair); }
+
+/* Подвал */
+footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hair-2); }
+.road { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.road h3 { font-size: 16px; margin: 8px 0 8px; }
+.road ul { margin: 0; padding-left: 18px; color: var(--bone-2); font-size: 14px; }
+.road li + li { margin-top: 4px; }
+.selftest { margin-top: 24px; font-size: 13px; color: var(--bone-3); }
+.selftest b { color: var(--bone-2); }
+.fineprint { margin-top: 10px; font-size: 12.5px; color: var(--bone-3); max-width: 110ch; }
+
+@media (max-width: 1180px) {
+  .need, .budget, .weights, .two { grid-template-columns: minmax(0, 1fr); }
+  .detail { position: static; max-height: none; }
+  .intro { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .reqs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .bar-title { display: none; }
+  .badge-demo { font-size: 12px; padding: 4px 9px; }
+  .real-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .tile-p { width: 50px; }
+  .tile-p b { font-size: 19px; }
+  .reqs, .road { grid-template-columns: minmax(0, 1fr); }
+  .surface, .detail { padding: 16px; }
+  .why div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .d-p b { font-size: 30px; }
+  table { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <div class="mark">GREEN<span>_</span></div>
+    <div class="bar-title">Приоритет территорий и бюджет озеленения</div>
+    <div class="spacer"></div>
+    <div class="badge-demo" title="Показатели территорий, цены и меньшие варианты посадок условные. Реальные факты GREEN_ отмечены отдельно.">Демо: условные данные</div>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Сменить тему">Тема</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <div>
+      <h1>Где сажать в первую очередь и что успеть за выделенные деньги</h1>
+      <p>Прототип модуля GREEN_: улицы ранжируются по потребности в озеленении P, для каждой улицы есть несколько вариантов посадок со стоимостью по справочнику, оптимизатор точно выбирает лучший набор вариантов в пределах общего бюджета.</p>
+    </div>
+    <div class="real" aria-label="Реализовано в GREEN_">
+      <div class="real-head"><span class="tag tag-real">Реализовано в GREEN_</span><span class="muted" style="font-size:13px">прогоны 20 улиц пилота, профиль strict, документация, приложение B</span></div>
+      <div class="real-grid">
+        <div><b class="num">20 из 20</b><span>улиц пилота получили план</span></div>
+        <div><b class="num">4 871 · 36 305</b><span>деревьев и кустов в планах</span></div>
+        <div><b class="num">0</b><span>нарушений норм по независимой проверке</span></div>
+        <div><b class="num">9 001 171</b><span>исходных сущностей сверено, изменено 0</span></div>
+        <div><b class="num">104</b><span>правила норм, из них 70 расстояний</span></div>
+        <div><b class="num">58</b><span>видов в каталоге: 33 дерева, 25 кустарников</span></div>
+        <div><b class="num">9,1 мин</b><span>медиана прогона улицы</span></div>
+        <div><b class="num">до 11</b><span>вариантов плана на улицу, выдаётся лучший прошедший проверку</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="block" id="budget">
+    <div class="sec-head">
+      <h2>Бюджет программы</h2>
+      <span class="tag tag-proto">Прототип модуля · условные данные</span>
+      <p class="lede">Цены, площади участков и меньшие варианты посадок условные. Из каждой улицы берётся ровно один вариант, включая «без посадок»; набор подбирается точно, по максимуму суммы полезности U.</p>
+    </div>
+    <div class="budget surface">
+      <div>
+        <div class="muted" style="font-size:13px">Общий бюджет B</div>
+        <div class="b-value num" id="bValue">—</div>
+        <div class="b-sub" id="bSub">—</div>
+        <input type="range" id="bRange" min="0" max="100" step="1" aria-label="Общий бюджет">
+        <div class="quick" id="quick"></div>
+        <div class="greedy" id="greedy"></div>
+      </div>
+      <div>
+        <div class="kpis" id="kpis"></div>
+        <div class="tbl-wrap" style="margin-top:16px">
+          <table class="cmp" id="cmpTable"></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="needs">
+    <div class="sec-head">
+      <h2>Карта потребности</h2>
+      <span class="tag tag-proto">Прототип модуля · условные данные</span>
+      <p class="lede">Схема, а не география: 20 участков пилота по убыванию P, полоса — вклады факторов. Процентиль считается среди этих 20 улиц: это не рейтинг всей Москвы и не превышение санитарных норм. Нажмите на улицу.</p>
+    </div>
+    <div class="need">
+      <div>
+        <div class="legend" id="legend"></div>
+        <div class="tiles" id="tiles"></div>
+      </div>
+      <aside class="detail" id="detail" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section class="block" id="weights">
+    <div class="sec-head">
+      <h2>Веса, профиль и устойчивость рейтинга</h2>
+      <span class="tag tag-proto">Прототип модуля · условные данные</span>
+      <p class="lede">Равные веса по 20% — проектная гипотеза, не норматив; перед применением их согласуют специалисты. Профиль basic (G, E, V по 1/3) включается, когда H или A известны не для всех участков. Нижний вес полезности: при 1,0 приоритет не влияет на отбор.</p>
+    </div>
+    <div class="weights">
+      <div class="surface">
+        <div class="ctl-row"><span class="k">Профиль</span><div class="seg" id="profileSeg"></div></div>
+        <div class="ctl-row"><span class="k">Нижний вес полезности</span><div class="seg" id="floorSeg"></div></div>
+        <div id="wSliders"></div>
+        <div class="quick" style="margin-top:14px"><button class="chip-btn" id="wReset" type="button">Вернуть равные веса</button></div>
+      </div>
+      <div class="surface">
+        <h3 style="font-size:16px;margin-bottom:4px">Диапазон места при удвоении веса одного фактора</h3>
+        <p class="muted" style="font-size:13px;margin-bottom:12px" id="sensNote"></p>
+        <div class="tbl-wrap"><table id="sensTable"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="prices">
+    <div class="sec-head">
+      <h2>Справочник цен и предварительная ведомость</h2>
+      <span class="tag tag-proto">Условный справочник</span>
+      <p class="lede">Цены условные, придуманы для показа механики: реальные котировки не собирались. Стоимость включает растение и стандартную посадку одной единицы; уход, замена и подготовка грунта не входят. Это предварительная оценка, не строительная смета. Расчёт в целых копейках.</p>
+    </div>
+    <div class="two">
+      <div class="surface"><div class="tbl-wrap"><table id="priceTable"></table></div></div>
+      <div class="surface">
+        <h3 style="font-size:16px;margin-bottom:10px">Ведомость выбранного портфеля</h3>
+        <div class="tbl-wrap"><table id="estTable"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="residents">
+    <div class="sec-head">
+      <h2>Обращения жителей</h2>
+      <span class="tag tag-proto">Прототип модуля · условные данные</span>
+      <p class="lede">Обращение создаёт кандидата на обследование. Число голосов не повышает P и не включает участок в программу автоматически.</p>
+    </div>
+    <div class="reqs" id="reqs"></div>
+  </section>
+
+  <footer>
+    <div class="road">
+      <div>
+        <span class="tag tag-real">Реализовано</span>
+        <h3>Нормативный расчёт GREEN_</h3>
+        <ul>
+          <li>План посадок по DXF улицы на слоях GREEN_ с объяснением каждой посадки и отказа по акту и пункту</li>
+          <li>Все 20 улиц пилота: 4 871 дерево, 36 305 кустов, 0 нарушений норм по независимой проверке</li>
+          <li>Исходник не меняется: 9 001 171 сущность сверена</li>
+          <li>Кроны и борта под зеленью «было → стало» по каждой улице — их берёт вариант «полный план» на этой странице</li>
+        </ul>
+      </div>
+      <div>
+        <span class="tag tag-proto">Спроектировано</span>
+        <h3>Приоритет и бюджет, этот прототип</h3>
+        <ul>
+          <li>P из процентилей пяти факторов, диапазон P при пропусках, профиль basic</li>
+          <li>Стоимость по справочнику в копейках, U = (нижний вес + (1 − нижний вес)·P/100)·F</li>
+          <li>Точный выбор портфеля, сравнение с жадным отбором по U/C</li>
+          <li>Чувствительность к весам, объяснение выбора и отсрочки</li>
+        </ul>
+      </div>
+      <div>
+        <span class="tag tag-plain">План развития</span>
+        <h3>Данные и мониторинг</h3>
+        <ul>
+          <li>Сопоставимые источники H, A, E, V вместо условных значений</li>
+          <li>Бюджетные варианты, сгенерированные и проверенные GREEN_, а не доли полного плана</li>
+          <li>Реальный справочник цен, уход и замена растений</li>
+          <li>Прогноз воздуха и мониторинг приживаемости посадок</li>
+        </ul>
+      </div>
+    </div>
+    <div class="selftest" id="selftest">Самопроверка оптимизатора выполняется…</div>
+    <p class="fineprint">Источники реальных фактов: README и приложение B документации GREEN_ (пакет прогонов 20.10.2026). Условные: температура поверхности H, PM2.5 A, плотность жителей E, социальные объекты V, ширина участков и длина бортов, распределение кустов по улицам, цены, состав меньших вариантов. Доля существующих крон для G взята из прогона GREEN_; кроны существующих деревьев там приняты кругами 8,5 м, поэтому G помечен как оценка.</p>
+  </footer>
+</main>
+
+<script>
+"use strict";
+// ---------- Данные ----------
+// Реальные значения из приложения B: деревьев (strict), деревьев на 1 км, кроны % было→стало, борта под зеленью % было→стало.
+// Условные: H (°C поверхности), A (PM2.5, мкг/м³), E (чел/га), V (объектов на км), ширина участка, м.
+const RAW = [
+  ["S01","Олимпийская деревня",735,354,16.3,18.7,20.6,38.4, 41.2,10.8,182,2.4,46],
+  ["S02","Песчаный переулок",111,89,34.2,36,35.6,40.7, 38.5,11.9,145,3.1,30],
+  ["S03","3-я Парковая улица",155,37,23.8,24.2,41.2,47.1, 39.8,10.2,210,2.8,38],
+  ["S04","Харьковская улица",249,261,13.3,16.6,27.1,49.4, 44.6,12.4,236,1.9,40],
+  ["S05","улица Багрицкого",19,11,40.2,40.5,45.8,53.3, 37.9,11.1,168,2.2,34],
+  ["S06","Камчатская улица",106,67,9.7,10.8,9.5,16.4, 45.8,13.6,254,3.4,36],
+  ["S07","Улица Нижние Поля",19,11,16.6,16.9,33,34.8, null,14.9,72,0.6,42],
+  ["S08","Лодочная улица",210,70,35.2,36.1,35.7,40, 40.1,12.8,131,1.5,32],
+  ["S09","Измайловская площадь",36,25,35.1,35.8,40.6,50.7, 42.7,null,96,1.1,48],
+  ["S10","Старый Гай ул.",493,247,26.6,29.1,25,35.4, 43.3,12.1,221,2.6,44],
+  ["S11","Фрунзенская набережная",0,0,27.8,27.8,41.3,47.2, 39.4,13.2,118,0.9,40],
+  ["S12","Наташинский пр-д",78,42,24.6,25.6,24.5,38.2, 41.8,11.4,157,2.0,30],
+  ["S13","Харьковский проезд",123,38,12,12.8,30.9,45.2, 44.1,12.9,198,2.3,30],
+  ["S14","Куликовская улица",644,293,9.2,12.9,14.5,23.2, 45.2,12.2,243,3.0,40],
+  ["S15","Академика Понтрягина ул.",1205,261,18.1,21.4,16.1,21.1, 42.0,10.9,201,1.7,52],
+  ["S16","улица Берзарина",346,94,16.7,18.5,23.7,34.8, 43.9,14.1,188,2.9,38],
+  ["S17","Малая Грузинская ул.",9,5,25.4,25.5,34.1,37.9, 40.6,13.8,164,3.6,30],
+  ["S18","Кустанайская улица",166,148,20.9,22.5,25.6,32.2, 43.5,12.6,229,2.5,40],
+  ["S19","2-я Прядильная ул.",77,51,29.8,30.4,38.1,43.6, 41.1,11.7,176,2.1,32],
+  ["S20","Улица Сергея Макеева",90,34,19.8,20.2,32.1,37.5, 42.4,13.3,139,1.8,34],
+];
+const TOTAL_SHRUBS = 36305;
+const FACTORS = [
+  {k:"G", name:"Дефицит зелени", unit:"", desc:"1 − доля крон в границе", src:"из прогона GREEN_", status:"оценка: кроны кругами 8,5 м"},
+  {k:"H", name:"Перегрев поверхности", unit:"°C", desc:"медиана дневной температуры поверхности", src:"условно", status:"условное значение"},
+  {k:"A", name:"PM2.5", unit:"мкг/м³", desc:"среднегодовая концентрация", src:"условно", status:"условное значение"},
+  {k:"E", name:"Жители в буфере", unit:"чел/га", desc:"плотность жителей в буфере", src:"условно", status:"условное значение"},
+  {k:"V", name:"Школы, детсады, медучреждения", unit:"на км", desc:"уникальных объектов на км участка", src:"условно", status:"условное значение"},
+];
+const PRICE_DATE = "01.10.2026";
+const PRICES = [
+  {code:"tilia_cordata", name:"Липа мелколистная", kind:"tree", size:"ствол 8–10 см, ком", plant:16200, planting:6800},
+  {code:"acer_platanoides", name:"Клён остролистный", kind:"tree", size:"ствол 8–10 см, ком", plant:14500, planting:6800},
+  {code:"ulmus_laevis", name:"Вяз гладкий", kind:"tree", size:"ствол 8–10 см, ком", plant:12800, planting:6800},
+  {code:"acer_ginnala", name:"Клён Гиннала", kind:"tree", size:"высота 2,0–2,5 м, ком", plant:7900, planting:5200},
+  {code:"sorbus_aucuparia", name:"Рябина обыкновенная", kind:"tree", size:"ствол 6–8 см, ком", plant:9400, planting:5200},
+  {code:"crataegus_submollis", name:"Боярышник полумягкий", kind:"tree", size:"высота 2,0–2,5 м, ком", plant:8700, planting:5200},
+  {code:"pinus_mugo", name:"Сосна горная", kind:"tree", size:"высота 1,0–1,2 м, ком", plant:11300, planting:4600},
+  {code:"spiraea_vanhouttei", name:"Спирея Вангутта", kind:"shrub", size:"C5, 0,6–0,8 м", plant:1150, planting:420},
+  {code:"cotoneaster_lucidus", name:"Кизильник блестящий", kind:"shrub", size:"C3, 0,4–0,6 м", plant:690, planting:380},
+  {code:"physocarpus_opulifolius", name:"Пузыреплодник калинолистный", kind:"shrub", size:"C5, 0,6–0,8 м", plant:1250, planting:420},
+  {code:"cornus_alba", name:"Дёрен белый", kind:"shrub", size:"C5, 0,6–0,8 м", plant:980, planting:420},
+];
+const TREE_SP = PRICES.filter(p => p.kind === "tree");
+const SHRUB_SP = PRICES.filter(p => p.kind === "shrub");
+const VARIANT_DEFS = [
+  {id:"v0", name:"Без посадок"},
+  {id:"v1", name:"Аллея вдоль борта", t:0.45, s:0, k:0.55, l:0.35},
+  {id:"v2", name:"Аллея и кустарник у борта", t:0.5, s:0.5, k:0.55, l:0.6},
+  {id:"v3", name:"Полный план GREEN_", t:1, s:1, k:1, l:1},
+];
+
+// ---------- Утилиты ----------
+const nf0 = new Intl.NumberFormat("ru-RU", {maximumFractionDigits: 0});
+const nf1 = new Intl.NumberFormat("ru-RU", {minimumFractionDigits: 1, maximumFractionDigits: 1});
+const nf2 = new Intl.NumberFormat("ru-RU", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const rub = kop => nf0.format(Math.round(kop / 100)) + " ₽";
+const mln = kop => nf1.format(kop / 1e8) + " млн ₽";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $ = id => document.getElementById(id);
+function hash(str) { let h = 2166136261; for (const ch of str) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+function rngFrom(seed) { let s = seed || 1; return () => { s ^= s << 13; s >>>= 0; s ^= s >>> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; }; }
+// Наибольший остаток: целые доли, сумма ровно total.
+function apportion(total, weights) {
+  const sum = weights.reduce((a, b) => a + b, 0);
+  if (total <= 0 || sum <= 0) return weights.map(() => 0);
+  const raw = weights.map(w => total * w / sum);
+  const out = raw.map(Math.floor);
+  let rest = total - out.reduce((a, b) => a + b, 0);
+  const order = raw.map((r, i) => [r - Math.floor(r), i]).sort((a, b) => b[0] - a[0] || a[1] - b[1]);
+  for (let j = 0; j < rest; j++) out[order[j][1]]++;
+  return out;
+}
+
+// ---------- Улицы и варианты ----------
+const STREETS = RAW.map(r => {
+  const [id, name, trees, tpk, cb, ca, kb, ka, H, A, E, V, width] = r;
+  const lenCond = !(tpk > 0);
+  const lengthKm = lenCond ? 1.6 : trees / tpk;
+  const area = lengthKm * 1000 * width;
+  const kerb = lengthKm * 1000 * 2.1;
+  return { id, name, trees, tpk, crown:[cb, ca], kerbPct:[kb, ka], lengthKm, lenCond, width, area, kerb,
+    dK: (ca - cb) / 100 * area, dL: (ka - kb) / 100 * kerb,
+    raw: { G: 1 - cb / 100, H, A, E, V } };
+});
+{ // кусты по улицам: условно, итог равен реальным 36 305
+  const shrubs = apportion(TOTAL_SHRUBS, STREETS.map(s => s.dL + 0.15 * s.trees + 20));
+  STREETS.forEach((s, i) => { s.shrubs = shrubs[i]; });
+}
+STREETS.forEach(s => {
+  const rnd = rngFrom(hash(s.id));
+  s.treeMix = TREE_SP.map(() => 0.2 + rnd());
+  s.shrubMix = SHRUB_SP.map(() => 0.2 + rnd());
+  s.variants = [];
+  for (const d of VARIANT_DEFS) {
+    if (d.id === "v0") { s.variants.push({id:"v0", name:d.name, trees:0, shrubs:0, items:[], cost:0, dK:0, dL:0}); continue; }
+    const t = Math.round(s.trees * d.t), sh = Math.round(s.shrubs * d.s);
+    if (t === 0 && sh === 0) continue;
+    const name = (s.trees === 0 && d.id === "v2") ? "Кустарник у борта" : d.name;
+    const tq = apportion(t, s.treeMix), sq = apportion(sh, s.shrubMix);
+    const items = [];
+    TREE_SP.forEach((p, i) => { if (tq[i]) items.push({p, q: tq[i]}); });
+    SHRUB_SP.forEach((p, i) => { if (sq[i]) items.push({p, q: sq[i]}); });
+    // стоимость в целых копейках
+    const cost = items.reduce((a, it) => a + it.q * (it.p.plant * 100 + it.p.planting * 100), 0);
+    s.variants.push({id:d.id, name, trees:t, shrubs:sh, items, cost, dK: s.dK * d.k, dL: s.dL * d.l, real: d.id === "v3"});
+  }
+  s.variants.forEach(v => { v.F = 0.5 * v.dK / 1000 + 0.5 * v.dL / 100; });
+});
+const FULL_COST = STREETS.reduce((a, s) => a + s.variants[s.variants.length - 1].cost, 0);
+
+// ---------- Состояние ----------
+const state = {
+  weights: {G:20, H:20, A:20, E:20, V:20},
+  profile: "full",
+  floor: 0.25,
+  budget: Math.round(FULL_COST * 0.35 / 1e8) * 1e8, // копейки, кратно 1 млн ₽
+  open: "S14",
+  force: null, // {sid, vid}
+  altMul: 1.5,
+};
+
+// ---------- Процентиль и P ----------
+function percentile(values, x) {
+  const n = values.length;
+  if (n <= 1) return 0.5;
+  if (values.every(v => v === values[0])) return 0.5;
+  let less = 0, eq = 0;
+  for (const v of values) { if (v < x) less++; else if (v === x) eq++; }
+  return (less + 0.5 * (eq - 1)) / (n - 1);
+}
+function activeFactors() { return state.profile === "basic" ? ["G","E","V"] : ["G","H","A","E","V"]; }
+function normWeights(base) {
+  const ks = activeFactors();
+  if (state.profile === "basic") return Object.fromEntries(ks.map(k => [k, 1 / 3]));
+  const w = base || state.weights;
+  const sum = ks.reduce((a, k) => a + w[k], 0) || 1;
+  return Object.fromEntries(ks.map(k => [k, w[k] / sum]));
+}
+function computeQ() {
+  const q = {};
+  for (const f of FACTORS) {
+    const vals = STREETS.map(s => s.raw[f.k]).filter(v => v !== null && v !== undefined);
+    for (const s of STREETS) {
+      const v = s.raw[f.k];
+      (q[s.id] ||= {})[f.k] = (v === null || v === undefined) ? null : percentile(vals, v);
+    }
+    f.n = vals.length;
+  }
+  return q;
+}
+const Q = computeQ();
+function scoreP(s, w) {
+  let lo = 0, miss = 0; const missing = [];
+  for (const k of Object.keys(w)) {
+    const q = Q[s.id][k];
+    if (q === null) { miss += w[k]; missing.push(k); } else lo += w[k] * q;
+  }
+  return { lo: 100 * lo, hi: 100 * (lo + miss), complete: missing.length === 0, missing };
+}
+function rankOf(pmap) {
+  const ids = STREETS.filter(s => pmap[s.id].complete).map(s => s.id)
+    .sort((a, b) => pmap[b].lo - pmap[a].lo || (a < b ? -1 : 1));
+  const r = {}; ids.forEach((id, i) => { r[id] = i + 1; }); return { r, n: ids.length };
+}
+const uWeight = P => state.floor + (1 - state.floor) * P / 100;
+const toUi = u => Math.round(u * 1e6); // фиксированная точность сравнения U
+
+// ---------- Оптимизатор: точный выбор одного варианта на улицу ----------
+// Парето-фронт (стоимость в копейках, U в микроединицах); при равенстве U — меньшая стоимость, затем порядок site_id/variant_id.
+function optimize(options, B) {
+  let front = [{c: 0, u: 0, ch: []}];
+  for (const opts of options) {
+    const next = [];
+    for (const st of front) for (let j = 0; j < opts.length; j++) {
+      const o = opts[j], c = st.c + o.c;
+      if (c > B) continue;
+      next.push({c, u: st.u + o.u, ch: st.ch.concat(j)});
+    }
+    next.sort((a, b) => a.c - b.c || b.u - a.u || lex(a.ch, b.ch));
+    front = [];
+    let best = -1;
+    for (const x of next) if (x.u > best) { front.push(x); best = x.u; }
+  }
+  return front;
+}
+function lex(a, b) { for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i] - b[i]; return 0; }
+function bestUnder(front, B) {
+  let lo = 0, hi = front.length - 1, ans = 0;
+  while (lo <= hi) { const m = (lo + hi) >> 1; if (front[m].c <= B) { ans = m; lo = m + 1; } else hi = m - 1; }
+  return front[ans];
+}
+function bruteForce(options, B) {
+  let best = {c: 0, u: 0, ch: options.map(() => 0)};
+  const ch = new Array(options.length).fill(0);
+  (function rec(i, c, u) {
+    if (c > B) return;
+    if (i === options.length) {
+      if (u > best.u || (u === best.u && (c < best.c || (c === best.c && lex(ch, best.ch) < 0)))) best = {c, u, ch: ch.slice()};
+      return;
+    }
+    for (let j = 0; j < options[i].length; j++) { ch[i] = j; rec(i + 1, c + options[i][j].c, u + options[i][j].u); }
+    ch[i] = 0;
+  })(0, 0, 0);
+  return best;
+}
+function greedy(options, B) {
+  // Стандартная жадная эвристика для выбора вариантов: все улицы с нулевого варианта,
+  // на каждом шаге — одно повышение с лучшим ΔU/ΔC среди помещающихся в остаток.
+  const ch = options.map(() => 0); let c = 0, u = 0;
+  for (;;) {
+    let best = null;
+    options.forEach((opts, i) => {
+      const cur = opts[ch[i]];
+      opts.forEach((o, k) => {
+        const dc = o.c - cur.c, du = o.u - cur.u;
+        if (dc <= 0 || du <= 0 || c + dc > B) return;
+        const r = du / dc;
+        if (!best || r > best.r) best = {i, k, dc, du, r};
+      });
+    });
+    if (!best) break;
+    ch[best.i] = best.k; c += best.dc; u += best.du;
+  }
+  return {c, u, ch};
+}
+
+// ---------- Модель для текущих настроек ----------
+let M = null;
+function buildModel(wBase) {
+  const w = normWeights(wBase);
+  const P = {}; STREETS.forEach(s => { P[s.id] = scoreP(s, w); });
+  const options = STREETS.map(s => {
+    const p = P[s.id];
+    if (!p.complete) return [{c: 0, u: 0, v: s.variants[0]}];
+    return s.variants.map(v => ({c: v.cost, u: toUi(uWeight(p.lo) * v.F), v}));
+  });
+  return { w, P, options, rank: rankOf(P) };
+}
+function solve(model, B) {
+  model.front ||= optimize(model.options, Infinity);
+  return bestUnder(model.front, B);
+}
+function recompute() {
+  M = buildModel();
+  M.front = optimize(M.options, Infinity);
+  renderAll();
+}
+
+// ---------- Отрисовка ----------
+const pBin = p => Math.min(4, Math.floor(p / 20));
+const sumPort = (model, sol) => {
+  let trees = 0, shrubs = 0, dK = 0, dL = 0, n = 0;
+  sol.ch.forEach((j, i) => { const v = model.options[i][j].v; if (v.id !== "v0") n++; trees += v.trees; shrubs += v.shrubs; dK += v.dK; dL += v.dL; });
+  return {trees, shrubs, dK, dL, n, c: sol.c, u: sol.u / 1e6};
+};
+
+function renderBudget() {
+  const B = state.budget;
+  const sol = solve(M, B);
+  M.sol = sol;
+  const t = sumPort(M, sol);
+  $("bValue").textContent = mln(B);
+  $("bSub").textContent = `${nf0.format(Math.round(B / FULL_COST * 100))}% стоимости всех полных планов (${mln(FULL_COST)})`;
+  const r = $("bRange"); r.max = String(Math.ceil(FULL_COST / 1e8)); r.value = String(Math.round(B / 1e8));
+  const q = [0.15, 0.35, 0.6, 1].map(x => Math.round(FULL_COST * x / 1e8) * 1e8);
+  $("quick").innerHTML = q.map((b, i) => `<button class="chip-btn" type="button" data-b="${b}" aria-pressed="${b === B}">${["Скромный","Базовый","Расширенный","Все полные планы"][i]} · ${nf0.format(b / 1e8)} млн</button>`).join("");
+  const complete = STREETS.filter(s => M.P[s.id].complete).length;
+  $("kpis").innerHTML = [
+    ["Выбрано улиц", `${t.n} <small>из ${complete}</small>`],
+    ["Деревьев", nf0.format(t.trees)],
+    ["Кустов", nf0.format(t.shrubs)],
+    ["Сумма U", nf2.format(t.u)],
+    ["Стоимость", mln(t.c)],
+    ["Остаток", mln(B - t.c)],
+    ["Прирост крон ΔK", nf0.format(t.dK) + " <small>м²</small>"],
+    ["Борта под зеленью ΔL", nf0.format(t.dL) + " <small>м</small>"],
+  ].map(([k, v]) => `<div class="kpi"><span>${k}</span><b class="num">${v}</b></div>`).join("");
+  const g = greedy(M.options, B);
+  const gd = (sol.u - g.u) / 1e6;
+  $("greedy").innerHTML = gd > 1e-9
+    ? `<span>Жадный отбор по приросту U/C:</span> <b class="num">ΣU = ${nf2.format(g.u / 1e6)}</b>, <span class="num">на ${nf1.format(gd / (sol.u / 1e6) * 100)}% меньше точного</span> <span class="muted">(${mln(g.c)} потрачено)</span>`
+    : `<span>Жадный отбор по приросту U/C: <b class="num">ΣU = ${nf2.format(g.u / 1e6)}</b>, совпадает с точным.</span>`;
+  // сравнение
+  const altB = Math.min(FULL_COST, Math.round(B * state.altMul / 1e8) * 1e8);
+  const alt = sumPort(M, solve(M, altB));
+  const cols = ["Бюджет", "Улиц", "Деревьев", "Кустов", "Стоимость", "ΔK, м²", "ΔL, м", "Сумма U"];
+  const line = (name, b, x, cls) => `<tr class="${cls}"><td>${name}</td><td class="r num">${b}</td><td class="r num">${x.n}</td><td class="r num">${nf0.format(x.trees)}</td><td class="r num">${nf0.format(x.shrubs)}</td><td class="r num">${x.c ? mln(x.c) : "0"}</td><td class="r num">${nf0.format(x.dK)}</td><td class="r num">${nf0.format(x.dL)}</td><td class="r num">${nf2.format(x.u)}</td></tr>`;
+  const zero = {n: 0, trees: 0, shrubs: 0, c: 0, dK: 0, dL: 0, u: 0};
+  $("cmpTable").innerHTML = `<thead><tr><th>Сценарий</th>${cols.map(c => `<th class="r">${c}</th>`).join("")}</tr></thead><tbody>` +
+    line("Без новых посадок", "—", zero, "") + line("Выбранный портфель", mln(B), t, "main") +
+    line(`Другой бюджет <button class="force-btn" type="button" id="altBtn">${state.altMul > 1 ? "+50%" : "−50%"}</button>`, mln(altB), alt, "") + "</tbody>";
+}
+
+function renderLegend() {
+  const fs = activeFactors();
+  $("legend").innerHTML = `<span>P<span class="scale">${[0,1,2,3,4].map(i => `<i class="pb${i}"></i>`).join("")}</span>0 → 100</span>` +
+    fs.map(k => `<span><i class="sw" style="background:var(--f${k})"></i>${k} · ${FACTORS.find(f => f.k === k).name}</span>`).join("") +
+    `<span><i class="sw" style="background:repeating-linear-gradient(135deg,var(--hair-2) 0 3px,transparent 3px 6px)"></i>нет данных</span>`;
+}
+
+function statusOf(s, i) {
+  const p = M.P[s.id];
+  if (!p.complete) return {cls: "need-data", txt: "требуются данные"};
+  const v = M.options[i][M.sol.ch[i]].v;
+  if (v.id === "v0") return {cls: "", txt: "отложено"};
+  if (v.id === "v3") return {cls: "on", txt: "полный план"};
+  return {cls: "part", txt: v.id === "v1" ? "аллея" : (v.name === "Кустарник у борта" ? "кустарник" : "аллея + кусты")};
+}
+
+function renderTiles() {
+  const order = STREETS.map((s, i) => ({s, i})).sort((a, b) => {
+    const pa = M.P[a.s.id], pb = M.P[b.s.id];
+    return (pb.lo + pb.hi) / 2 - (pa.lo + pa.hi) / 2 || (a.s.id < b.s.id ? -1 : 1);
+  });
+  const fs = activeFactors();
+  $("tiles").innerHTML = order.map(({s, i}) => {
+    const p = M.P[s.id];
+    const st = statusOf(s, i);
+    const pCell = p.complete
+      ? `<div class="tile-p pb${pBin(p.lo)}"><b class="num">${nf0.format(p.lo)}</b><span>P</span></div>`
+      : `<div class="tile-p pbx"><b class="num range">${nf0.format(p.lo)}–${nf0.format(p.hi)}</b><span>P</span></div>`;
+    const stack = fs.map(k => {
+      const q = Q[s.id][k];
+      const wpc = M.w[k] * 100;
+      return q === null ? `<i class="miss" style="width:${wpc}%"></i>` : `<i style="width:${wpc * q}%;background:var(--f${k})"></i>`;
+    }).join("");
+    const rk = M.rank.r[s.id] ? `${M.rank.r[s.id]} место` : "вне рейтинга";
+    return `<button class="tile${state.open === s.id ? " is-open" : ""}" type="button" data-sid="${s.id}" aria-label="${esc(s.name)}">
+      <div class="tile-top">${pCell}<div class="tile-name"><div class="rk">${rk}</div><h4>${esc(s.name)}</h4></div></div>
+      <div class="stack">${stack}</div>
+      <div class="tile-foot"><span class="st ${st.cls}">${st.txt}</span><span class="num muted">${M.options[i][M.sol.ch[i]].v.cost ? mln(M.options[i][M.sol.ch[i]].v.cost) : ""}</span></div>
+    </button>`;
+  }).join("");
+}
+
+function fmtRaw(k, v) {
+  if (v === null || v === undefined) return "нет данных";
+  if (k === "G") return nf2.format(v);
+  return nf1.format(v);
+}
+
+function renderDetail() {
+  const el = $("detail");
+  const i = STREETS.findIndex(s => s.id === state.open);
+  if (i < 0) { el.innerHTML = `<div class="empty">Выберите улицу на схеме</div>`; return; }
+  const s = STREETS[i], p = M.P[s.id];
+  const sol = M.sol, chosenJ = sol.ch[i], chosen = M.options[i][chosenJ].v;
+  const B = state.budget;
+  const rank = M.rank.r[s.id];
+  const pTxt = p.complete ? nf0.format(p.lo) : `${nf0.format(p.lo)}–${nf0.format(p.hi)}`;
+  const fs = activeFactors();
+  const contrib = fs.map(k => {
+    const f = FACTORS.find(x => x.k === k), q = Q[s.id][k], w = M.w[k];
+    const v = s.raw[k];
+    const val = q === null ? "—" : nf1.format(100 * w * q);
+    const bar = q === null ? `<div class="bar-bg"><i style="width:100%;background:repeating-linear-gradient(135deg,var(--hair-2) 0 3px,transparent 3px 6px)"></i></div>`
+      : `<div class="bar-bg"><i style="width:${q * 100}%;background:var(--f${k})"></i></div>`;
+    const qs = q === null ? `<span class="muted">q —</span>` : `<span class="muted num">q ${nf2.format(q)}</span>`;
+    const statusTxt = v === null ? `<b style="color:var(--warn)">нет данных: требуется источник</b>` : `${f.src}, ${f.status}`;
+    return `<span class="code" style="color:var(--f${k})">${k}</span>${bar}${qs}<b class="num" style="text-align:right">${val}</b>
+      <div class="lbl">${f.name}: <span class="num">${fmtRaw(k, v)}${v !== null && f.unit ? " " + f.unit : ""}</span> · ${statusTxt} · n = ${f.n}</div>`;
+  }).join("");
+
+  // варианты
+  const forced = state.force && state.force.sid === s.id ? state.force.vid : null;
+  const rowsV = s.variants.map((v, j) => {
+    const U = p.complete ? uWeight(p.lo) * v.F : null;
+    const isSel = j === chosenJ;
+    return `<tr class="${isSel ? "is-sel" : ""}"><td>${esc(v.name)}${v.real ? ` <span class="tag tag-real" style="font-size:10.5px">прогон</span>` : ""}${isSel ? ` <b style="color:var(--brand)">· выбран</b>` : ""}</td>
+      <td class="r num">${nf0.format(v.trees)} / ${nf0.format(v.shrubs)}</td><td class="r num">${v.cost ? mln(v.cost) : "0"}</td>
+      <td class="r num">${nf0.format(v.dK)}</td><td class="r num">${nf0.format(v.dL)}</td><td class="r num">${nf2.format(v.F)}</td>
+      <td class="r num">${U === null ? "—" : nf2.format(U)}</td></tr>`;
+  }).join("");
+
+  // объяснение
+  let why;
+  const share = chosen.cost / Math.max(B, 1) * 100;
+  const full = s.variants[s.variants.length - 1];
+  if (!p.complete) {
+    why = `<div><span class="k">Потребность</span><span>P от ${nf0.format(p.lo)} до ${nf0.format(p.hi)}: неизвестен фактор ${p.missing.join(", ")}. Неизвестное значение не считается нулём; диапазон — не доверительный интервал.</span></div>
+      <div><span class="k">Решение</span><span><b>Требуются данные.</b> Неполный P не участвует в автоматическом распределении бюджета. Варианты: найти сопоставимый источник ${p.missing.join(", ")} или перейти на общий профиль basic (G, E, V) для всех улиц.</span></div>`;
+  } else {
+    const potrebn = `P = ${nf0.format(p.lo)} из 100, ${rank}-е место из ${M.rank.n} улиц с полными данными. Вес полезности ${nf2.format(uWeight(p.lo))}.`;
+    const dop = s.trees === 0
+      ? "Деревьям места нет: по прогону GREEN_ подземные сети мешают 99% проверенных мест. Высокий приоритет без мест для деревьев — задача обследования, потребность не обнуляется."
+      : "Полный план прошёл нормы в прогоне GREEN_ (0 нарушений). Меньшие варианты здесь — условные доли полного плана; в модуле они будут сгенерированы и проверены заново.";
+    const effect = chosen.id === "v0" ? `Лучший вариант улицы дал бы F = ${nf2.format(full.F)}.` : `F = ${nf2.format(chosen.F)}: ΔK ${nf0.format(chosen.dK)} м², ΔL ${nf0.format(chosen.dL)} м.`;
+    const price = chosen.id === "v0" ? `Полный план стоит ${mln(full.cost)}, U на 1 млн ₽ = ${nf2.format(uWeight(p.lo) * full.F / (full.cost / 1e8))}.` : `${mln(chosen.cost)}, U на 1 млн ₽ = ${nf2.format(uWeight(p.lo) * chosen.F / (chosen.cost / 1e8))}.`;
+    let impact;
+    if (chosen.id === "v0") impact = full.cost > B ? `Полный план дороже всего бюджета (${mln(B)}). Отложено.` : "Отложено: те же деньги в других улицах дают больший суммарный U.";
+    else impact = `${nf1.format(share)}% бюджета. ${chosen.id !== "v3" ? "Полный план не взят: доплата за него даёт меньше U, чем те же деньги в других улицах." : ""}`;
+    why = `<div><span class="k">Потребность</span><span>${potrebn}</span></div>
+      <div><span class="k">Допустимость</span><span>${dop}</span></div>
+      <div><span class="k">Эффект</span><span>${effect}</span></div>
+      <div><span class="k">Цена</span><span>${price}</span></div>
+      <div><span class="k">Бюджет</span><span>${impact}</span></div>`;
+  }
+
+  // принудительное включение
+  const fopts = p.complete ? s.variants.filter((v, j) => v.id !== "v0" && j !== chosenJ) : [];
+  const forceBtns = fopts.length ? `<div class="quick" style="margin-top:12px;align-items:center"><span class="muted" style="font-size:13px">Что если включить принудительно:</span>${fopts.map(v => `<button class="chip-btn" type="button" data-force="${v.id}" aria-pressed="${forced === v.id}">${esc(v.name)}</button>`).join("")}</div>` : "";
+  let forceHtml = "";
+  if (forced) {
+    const fj = s.variants.findIndex(v => v.id === forced);
+    const opts = M.options.map((o, k) => k === i ? [o[fj]] : o);
+    const fv = s.variants[fj];
+    if (fv.cost > B) {
+      forceHtml = `<div class="callout" style="margin-top:12px"><b>Что если включить «${esc(fv.name)}» принудительно:</b> вариант стоит ${mln(fv.cost)} и не помещается в бюджет ${mln(B)}.</div>`;
+    } else {
+      const fr = optimize(opts, B); const f = fr[fr.length - 1];
+      const lost = [];
+      f.ch.forEach((j, k) => { if (k === i) return; const was = M.options[k][sol.ch[k]].v, now = opts[k][j].v; if (was.id !== now.id && was.id !== "v0") lost.push(`${STREETS[k].name}: ${was.name} → ${now.name}`); });
+      const d = (f.u - sol.u) / 1e6;
+      forceHtml = `<div class="callout" style="margin-top:12px"><b>Что если включить «${esc(fv.name)}» принудительно:</b> сумма U портфеля ${nf2.format(sol.u / 1e6)} → ${nf2.format(f.u / 1e6)} (<span class="${d < -1e-9 ? "delta-bad" : "delta-ok"}">${d < -1e-9 ? "−" : "+"}${nf2.format(Math.abs(d))}</span>), стоимость ${mln(f.c)}.${lost.length ? `<br>Придётся уменьшить (${lost.length}): ${lost.slice(0, 4).map(esc).join("; ")}${lost.length > 4 ? `; и ещё ${lost.length - 4}` : ""}.` : " Другие улицы не меняются."}</div>`;
+    }
+  }
+
+  el.innerHTML = `<div class="d-head"><div><span class="tag tag-proto" style="margin-bottom:8px">условные данные</span><h3 style="margin-top:8px">${esc(s.name)}</h3>
+      <div class="d-sub">${s.lenCond ? "длина ≈ 1,6 км (условно)" : `длина ≈ ${nf2.format(s.lengthKm)} км по прогону`} · ширина участка ${s.width} м (условно) · ${s.id}</div></div>
+      <div class="d-p"><b class="num">${pTxt}</b><span>${p.complete ? `P, ${rank}-е место` : "P, диапазон"}</span></div></div>
+    <div class="d-sec"><h4>Вклады в P</h4><div class="contrib">${contrib}</div></div>
+    <div class="d-sec"><h4>Прогон GREEN_, было → стало</h4>
+      <div class="callout"><span class="tag tag-real" style="font-size:10.5px">реальные данные</span>&nbsp; кроны ${nf1.format(s.crown[0])} → ${nf1.format(s.crown[1])}% участка · борта под зеленью ${nf1.format(s.kerbPct[0])} → ${nf1.format(s.kerbPct[1])}% · деревьев ${nf0.format(s.trees)} · нарушений 0. Кустов ${nf0.format(s.shrubs)} — условное распределение итога 36 305.</div></div>
+    <div class="d-sec"><h4>Варианты посадок</h4><div class="tbl-wrap"><table>
+      <thead><tr><th>Вариант</th><th class="r">Дер. / кусты</th><th class="r">C</th><th class="r">ΔK, м²</th><th class="r">ΔL, м</th><th class="r">F</th><th class="r">U</th></tr></thead>
+      <tbody>${rowsV}</tbody></table></div>${forceBtns}${forceHtml}</div>
+    <div class="d-sec"><h4>Почему так</h4><div class="why">${why}</div></div>`;
+}
+
+function renderWeights() {
+  $("profileSeg").innerHTML = [["full","Полный, 5 факторов"],["basic","basic: G, E, V"]].map(([v, t]) => `<button type="button" data-profile="${v}" aria-pressed="${state.profile === v}">${t}</button>`).join("");
+  $("floorSeg").innerHTML = [0.25, 0.5, 1].map(v => `<button type="button" data-floor="${v}" aria-pressed="${state.floor === v}">${nf2.format(v)}</button>`).join("");
+  const w = M.w;
+  $("wSliders").innerHTML = FACTORS.map(f => {
+    const on = f.k in w;
+    return `<div class="w-row${on ? "" : " dis"}"><span class="mono" style="color:var(--f${f.k})">${f.k}</span>
+      <input type="range" min="0" max="60" step="1" value="${state.weights[f.k]}" data-w="${f.k}" ${on && state.profile === "full" ? "" : "disabled"} aria-label="Вес ${f.name}">
+      <b class="num" style="text-align:right">${on ? nf1.format(w[f.k] * 100) + "%" : "—"}</b><div class="lbl">${f.name}${f.k === "G" ? " · из прогона GREEN_" : " · условно"}</div></div>`;
+  }).join("");
+}
+
+function renderSens() {
+  const ks = activeFactors();
+  const scen = [{name: "база", w: null}].concat(state.profile === "full"
+    ? ks.map(k => ({name: k, w: Object.fromEntries(ks.map(x => [x, state.weights[x] * (x === k ? 2 : 1)]))}))
+    : []);
+  const models = scen.map(sc => {
+    const m = sc.w ? buildModel(sc.w) : M;
+    const sol = solve(m, state.budget);
+    return {m, sol};
+  });
+  const n = models[0].m.rank.n;
+  $("sensNote").textContent = state.profile === "full"
+    ? `6 сценариев: текущие веса и по одному удвоенному весу с нормировкой. Портфель пересчитан для каждого сценария при бюджете ${mln(state.budget)}. Это диагностика зависимости от предпочтений, не проверка весов.`
+    : "В профиле basic веса фиксированы (по 1/3), сценарии удвоения не применяются. Показан текущий рейтинг.";
+  const rows = STREETS.map((s, i) => {
+    const ranks = models.map(x => x.m.rank.r[s.id]).filter(Boolean);
+    const inPort = models.filter(x => x.m.options[i][x.sol.ch[i]].v.id !== "v0").length;
+    return {s, base: M.rank.r[s.id], lo: ranks.length ? Math.min(...ranks) : null, hi: ranks.length ? Math.max(...ranks) : null, inPort, p: M.P[s.id]};
+  }).sort((a, b) => (a.base || 99) - (b.base || 99) || (a.s.id < b.s.id ? -1 : 1));
+  $("sensTable").innerHTML = `<thead><tr><th>Улица</th><th class="r">P</th><th class="r">Место</th><th class="r">Диапазон</th><th style="min-width:140px">1 … ${n}</th><th class="r">В портфеле</th></tr></thead><tbody>` +
+    rows.map(r => {
+      if (!r.base) return `<tr><td>${esc(r.s.name)}</td><td class="r num">${nf0.format(r.p.lo)}–${nf0.format(r.p.hi)}</td><td class="r" colspan="3"><span class="st need-data">требуются данные: ${r.p.missing.join(", ")}</span></td><td class="r num muted">—</td></tr>`;
+      const x = v => ((v - 1) / Math.max(n - 1, 1) * 100).toFixed(2) + "%";
+      return `<tr${state.open === r.s.id ? ' class="is-sel"' : ""}><td>${esc(r.s.name)}</td><td class="r num">${nf0.format(r.p.lo)}</td><td class="r num">${r.base}</td><td class="r num">${r.lo === r.hi ? r.lo : `${r.lo}–${r.hi}`}</td>
+        <td><div class="rng"><div class="ax"></div><div class="span" style="left:${x(r.lo)};width:calc(${x(r.hi)} - ${x(r.lo)} + 2px)"></div><div class="dot" style="left:${x(r.base)}"></div></div></td>
+        <td class="r num">${r.inPort} из ${models.length}</td></tr>`;
+    }).join("") + "</tbody>";
+}
+
+function renderPrices() {
+  $("priceTable").innerHTML = `<caption>Источник всех строк: условно, дата цен ${PRICE_DATE}, RUB с НДС, посадка — стандартный набор работ на 1 шт.</caption><thead><tr><th>Растение и код вида</th><th>Размер</th><th class="r">Растение, ₽</th><th class="r">Посадка, ₽</th></tr></thead><tbody>` +
+    PRICES.map(p => `<tr><td>${p.name}<div class="mono muted" style="font-size:12px">${p.code}</div></td><td class="muted">${p.size}</td><td class="r num">${nf0.format(p.plant)}</td><td class="r num">${nf0.format(p.planting)}</td></tr>`).join("") + "</tbody>";
+  const agg = new Map();
+  M.sol.ch.forEach((j, i) => { for (const it of M.options[i][j].v.items) agg.set(it.p.code, (agg.get(it.p.code) || 0) + it.q); });
+  const list = PRICES.filter(p => agg.get(p.code)).map(p => ({p, q: agg.get(p.code)}));
+  if (!list.length) { $("estTable").innerHTML = `<tbody><tr><td class="empty">Бюджет меньше стоимости любого варианта: выбран нулевой портфель.</td></tr></tbody>`; return; }
+  let total = 0;
+  const body = list.map(({p, q}) => { const sum = q * (p.plant + p.planting) * 100; total += sum;
+    return `<tr><td>${p.name}<div class="muted" style="font-size:12px">${p.size}</div></td><td class="r num">${nf0.format(q)}</td><td class="r num">${nf0.format(p.plant)}</td><td class="r num">${nf0.format(p.planting)}</td><td class="r num">${rub(sum)}</td></tr>`; }).join("");
+  $("estTable").innerHTML = `<thead><tr><th>Растение, размер</th><th class="r">Шт.</th><th class="r">Растение, ₽</th><th class="r">Посадка, ₽</th><th class="r">Итого</th></tr></thead><tbody>${body}</tbody>
+    <tfoot><tr><td colspan="4">Итого по портфелю${total === M.sol.c ? "" : " (расхождение!)"}</td><td class="r num">${rub(total)}</td></tr></tfoot>`;
+}
+
+const REQS = [
+  {street: "улица Берзарина", text: "У остановки нет тени, летом ждать автобус тяжело.", date: "12.10.2026", sid: "S16"},
+  {street: "Кустанайская улица", text: "Просим живую изгородь вдоль тротуара у школы: пыль с дороги.", date: "15.10.2026", sid: "S18"},
+  {street: "Двор у Камчатской улицы", text: "Посадить деревья во дворе за домом.", date: "20.10.2026", sid: null},
+  {street: "Улица Нижние Поля", text: "Вдоль промзоны совсем нет деревьев.", date: "24.10.2026", sid: "S07"},
+];
+function renderReqs() {
+  $("reqs").innerHTML = REQS.map(r => {
+    let st;
+    if (!r.sid) st = "Вне участков пилота · <b>кандидат на обследование</b>: нужна граница работ и подоснова.";
+    else {
+      const p = M.P[r.sid];
+      st = `<b>Кандидат на обследование</b> · P ${p.complete ? nf0.format(p.lo) : nf0.format(p.lo) + "–" + nf0.format(p.hi)} не меняется${p.complete ? "" : "; по участку требуются данные " + p.missing.join(", ")}`;
+    }
+    return `<article class="req"><div class="meta">${r.date} · форма обращения (условно)</div><h4 style="font-size:15px">${esc(r.street)}</h4><q>${esc(r.text)}</q><div class="stat">${st}</div></article>`;
+  }).join("");
+}
+
+function renderAll() { renderBudget(); renderLegend(); renderTiles(); renderDetail(); renderWeights(); renderSens(); renderPrices(); renderReqs(); }
+function renderBudgetDeps() { renderBudget(); renderTiles(); renderDetail(); renderSens(); renderPrices(); }
+
+// ---------- События ----------
+let raf = 0;
+$("bRange").addEventListener("input", e => {
+  state.budget = Number(e.target.value) * 1e8;
+  cancelAnimationFrame(raf); raf = requestAnimationFrame(renderBudgetDeps);
+});
+document.addEventListener("click", e => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.b) { state.budget = Number(t.dataset.b); renderBudgetDeps(); }
+  else if (t.dataset.sid) { state.open = t.dataset.sid; state.force = null; renderTiles(); renderDetail(); renderSens();
+    if (window.matchMedia("(max-width: 1180px)").matches) $("detail").scrollIntoView({behavior: "smooth", block: "start"}); }
+  else if (t.dataset.force) { const same = state.force && state.force.sid === state.open && state.force.vid === t.dataset.force; state.force = same ? null : {sid: state.open, vid: t.dataset.force}; renderDetail(); }
+  else if (t.dataset.profile) { state.profile = t.dataset.profile; state.force = null; recompute(); }
+  else if (t.dataset.floor) { state.floor = Number(t.dataset.floor); state.force = null; recompute(); }
+  else if (t.id === "wReset") { state.weights = {G:20, H:20, A:20, E:20, V:20}; recompute(); }
+  else if (t.id === "altBtn") { state.altMul = state.altMul > 1 ? 0.5 : 1.5; renderBudget(); }
+  else if (t.id === "themeBtn") {
+    const root = document.documentElement;
+    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("green-budget-theme", root.dataset.theme); } catch (_) {}
+  }
+});
+let wraf = 0;
+document.addEventListener("input", e => {
+  const k = e.target.dataset && e.target.dataset.w; if (!k) return;
+  state.weights[k] = Number(e.target.value);
+  cancelAnimationFrame(wraf);
+  wraf = requestAnimationFrame(() => { M = buildModel(); M.front = optimize(M.options, Infinity);
+    renderBudget(); renderLegend(); renderTiles(); renderDetail(); renderSens(); renderPrices(); renderReqs();
+    FACTORS.forEach(f => { const row = document.querySelector(`[data-w="${f.k}"]`); if (row) row.parentElement.querySelector("b").textContent = (f.k in M.w) ? nf1.format(M.w[f.k] * 100) + "%" : "—"; });
+  });
+});
+try { const t = localStorage.getItem("green-budget-theme"); if (t === "dark" || t === "light") document.documentElement.dataset.theme = t; } catch (_) {}
+
+// ---------- Самопроверка оптимизатора ----------
+function selfTest() {
+  const m = buildModel();
+  const idx = STREETS.map((s, i) => i).filter(i => m.P[STREETS[i].id].complete && STREETS[i].variants.length === 4).slice(0, 4);
+  const sub = idx.map(i => m.options[i]);
+  const subFull = sub.reduce((a, o) => a + o[o.length - 1].c, 0);
+  const budgets = [0.25, 0.5, 0.8].map(x => Math.round(subFull * x));
+  const bf = budgets.map(B => {
+    const fr = optimize(sub, B), a = fr[fr.length - 1], b = bruteForce(sub, B);
+    return {B, ok: a.u === b.u && a.c === b.c && lex(a.ch, b.ch) === 0, opt: a.u / 1e6, brute: b.u / 1e6};
+  });
+  let prev = -1, mono = 0; const samples = [];
+  for (let k = 0; k < 20; k++) {
+    const B = Math.round(FULL_COST * k / 19);
+    const fr = optimize(m.options, B); const u = fr[fr.length - 1].u;
+    if (u >= prev) mono++; prev = u; samples.push(u / 1e6);
+  }
+  const g = [0.15, 0.35, 0.6].map(x => { const B = Math.round(FULL_COST * x); const o = bestUnder(optimize(m.options, Infinity), B); const gr = greedy(m.options, B); return {x, opt: o.u / 1e6, greedy: gr.u / 1e6}; });
+  const res = {bruteForce: bf, monotonic: `${mono}/20`, samples, greedy: g, subset: idx.map(i => STREETS[i].id)};
+  console.log("[self-test] brute force vs optimizer:", JSON.stringify(bf));
+  console.log("[self-test] monotonicity:", res.monotonic, JSON.stringify(samples.map(x => +x.toFixed(4))));
+  console.log("[self-test] greedy vs exact:", JSON.stringify(g));
+  window.__selfTest = res;
+  const okBf = bf.filter(x => x.ok).length;
+  $("selftest").innerHTML = `<b>Самопроверка оптимизатора при загрузке:</b> совпадение с полным перебором на 4 улицах (${res.subset.join(", ")}) — ${okBf} из 3 бюджетов; ΣU не убывает с ростом бюджета — ${res.monotonic} проверок; жадный по приросту U/C против точного при 15/35/60% всех полных планов: ${g.map(x => `${nf2.format(x.greedy)} / ${nf2.format(x.opt)}`).join(" · ")}.`;
+}
+
+recompute();
+selfTest();
+</script>
+</body>
+</html>
