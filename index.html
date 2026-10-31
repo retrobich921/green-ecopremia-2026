@@ -122,6 +122,13 @@ button { font: inherit; color: inherit; }
   height: 34px; padding: 0 12px; cursor: pointer; font-size: 13px; white-space: nowrap;
 }
 .icon-btn:hover { background: var(--panel-2); }
+a.icon-btn { display: inline-flex; align-items: center; text-decoration: none; color: inherit; }
+
+/* Презентация */
+.deck { display: block; width: 100%; aspect-ratio: 842 / 640; border: 1px solid var(--hair); border-radius: var(--r); background: var(--panel); }
+.deck-fallback { padding: 18px; color: var(--bone-2); }
+.deck-open { margin-top: 8px; font-size: 14px; }
+.deck-open a, .deck-fallback a { color: var(--brand); font-weight: 600; }
 
 /* Вступление */
 .intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 32px; padding: 22px 0 6px; align-items: center; }
@@ -296,6 +303,7 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
 }
 @media (max-width: 640px) {
   .bar-title { display: none; }
+  .deck-long { display: none; }
   .badge-demo { font-size: 11.5px; padding: 4px 9px; white-space: normal; line-height: 1.2; min-width: 0; }
   .tag { white-space: normal; }
   .bar .wrap { gap: 10px; }
@@ -321,6 +329,7 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
     <div class="bar-title">Приоритет территорий и бюджет озеленения</div>
     <div class="spacer"></div>
     <div class="badge-demo" title="Цены, меньшие варианты посадок и обращения условные; факторы потребности — из открытых данных и прогонов GREEN_.">Демо: цены и варианты условные</div>
+    <a class="icon-btn" href="GREEN_presentation.pdf"><span class="deck-long">Презентация&nbsp;</span>PDF</a>
     <button class="icon-btn" id="themeBtn" type="button" aria-label="Сменить тему">Тема</button>
   </div>
 </header>
@@ -345,6 +354,18 @@ footer { margin-top: 36px; padding: 28px 0 40px; border-top: 1px solid var(--hai
       </div>
     </div>
   </div>
+
+  <section class="block" id="deck">
+    <div class="sec-head">
+      <h2>Презентация заявки</h2>
+      <span class="tag tag-plain">PDF · 10 слайдов</span>
+      <p class="lede">Что уже работает в GREEN_, формула приоритета территорий, стоимость и польза вариантов, оптимизатор с лимитом бюджета, сравнение с аналогами. Ниже на странице: интерактивный прототип модуля «Приоритет и бюджет».</p>
+    </div>
+    <object class="deck" data="GREEN_presentation.pdf#view=FitH" type="application/pdf" aria-label="Презентация заявки GREEN_, PDF">
+      <p class="deck-fallback">Браузер не показывает PDF внутри страницы. <a href="GREEN_presentation.pdf">Открыть презентацию (PDF, 0,6 МБ)</a></p>
+    </object>
+    <p class="deck-open"><a href="GREEN_presentation.pdf" target="_blank" rel="noopener">Открыть презентацию в новой вкладке (PDF, 0,6 МБ)</a></p>
+  </section>
 
   <section class="block" id="budget">
     <div class="sec-head">

@@ -7,7 +7,7 @@
 |---|---|
 | Исходный код сервиса GREEN_ (открыт) | https://github.com/Mojarung/LCT_2026 |
 | Демо модуля «Приоритет и бюджет» (прототип: потребность по открытым данным, цены условные) | https://retrobich921.github.io/green-ecopremia-2026/ |
-| Презентация проекта, PDF, 10 страниц | [presentation/GREEN_presentation.pdf](presentation/GREEN_presentation.pdf) |
+| Презентация проекта, PDF, 10 страниц | [GREEN_presentation.pdf](GREEN_presentation.pdf) · на странице: https://retrobich921.github.io/green-ecopremia-2026/GREEN_presentation.pdf |
 | Видео, 3 мин 14 с: работа сервиса (2 мин) и прототип модуля (1 мин) | https://retrobich921.github.io/green-ecopremia-2026/video/GREEN_video.mp4 |
 | Те же материалы и техническая документация на Google Диске | https://drive.google.com/drive/folders/1kGCvJsQaj4WI_HAVBkUFKZuRBL8n_XIW |
 
@@ -107,8 +107,8 @@ OpenStreetMap (школы, детсады, поликлиники, 31.10.2026), 
 ## Состав репозитория
 
 ```
-index.html          демо модуля «Приоритет и бюджет» (один файл, без сервера)
-presentation/       презентация заявки, PDF
+index.html          демо модуля «Приоритет и бюджет» (один файл, без сервера), сверху встроена презентация
+GREEN_presentation.pdf  презентация заявки (копия по старой ссылке: presentation/GREEN_presentation.pdf)
 video/              видео: работа сервиса и прототип модуля
 ```
 
